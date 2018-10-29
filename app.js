@@ -45,6 +45,11 @@ app.get("/getName", (req, res, next) => {
     );
 });
 
+//Required for navigating angular routes without server routes
+app.all('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+  });
+
 //Starting the server.
 app.listen(port, () => {
     console.log("Sever running in port : " + port);

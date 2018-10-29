@@ -31,13 +31,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Get method is used to fetch the data.
 app.get("/getName", (req, res, next) => {
     console.log(req.query.url);
-    clasrifaiApp.models.predict("e466caa0619f444ab97497640cefc4dc",req.query.url).then(
+    clasrifaiApp.models.predict("e466caa0619f444ab97497640cefc4dc", req.query.url).then(
         function (response) {
-            request("https://kgsearch.googleapis.com/v1/entities:search?query=" + response.rawData.outputs[0].data.regions[0].data.face.identity.concepts[0].name + "&key=AIzaSyA9CvHV75OZgADhnju2DkS73y_3QS1Gsxo&limit=1&indent=True",{json:true},(error,reaponse,body)=>{
+            request("https://kgsearch.googleapis.com/v1/entities:search?query=" + response.rawData.outputs[0].data.regions[0].data.face.identity.concepts[0].name + "&key=AIzaSyA9CvHV75OZgADhnju2DkS73y_3QS1Gsxo&limit=1&indent=True", { json: true }, (error, reaponse, body) => {
                 console.log(body.itemListElement);
                 res.send(body.itemListElement);
             });
-            
+
         },
         function (err) {
             // there was an error
@@ -48,7 +48,7 @@ app.get("/getName", (req, res, next) => {
 //Required for navigating angular routes without server routes
 app.all('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
-  });
+});
 
 //Starting the server.
 app.listen(port, () => {

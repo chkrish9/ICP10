@@ -15,7 +15,7 @@ const clasrifaiApp = new clarifai.App({
 const app = express();
 
 //Port number
-const port = 3002;
+const port = process.env.PORT || 3002;
 
 //Cors is used to allow other domains to access our application.
 app.use(cors());

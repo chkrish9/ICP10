@@ -5,6 +5,7 @@ const cors = require('cors');
 const clarifai = require('clarifai');
 const config = require('./config/config');
 const request = require('request');
+const path = require('path');
 
 const clasrifaiApp = new clarifai.App({
     apiKey: config.key
@@ -22,6 +23,10 @@ app.use(cors());
 //BodyParser is used to parse in coming request body.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+
+//Static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Get method is used to fetch the data.
 app.get("/getName", (req, res, next) => {
@@ -41,6 +46,6 @@ app.get("/getName", (req, res, next) => {
 });
 
 //Starting the server.
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
     console.log("Sever running in port : " + port);
 });

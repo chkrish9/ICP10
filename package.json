@@ -4,6 +4,7 @@
   "description": "icp 8",
   "main": "app.js",
   "scripts": {
+	"start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Murali krishna sai",
